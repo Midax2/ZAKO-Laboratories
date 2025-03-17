@@ -1,0 +1,70 @@
+[Microcode]
+;uAR |Label |ALU   |S1    |S2    |Dest  |ExtIR |Const |JCond |Adr   |Mem   |MAdr  |MDest |Regs
+0000 |Start |      |      |      |      |      |      |      |      |RW    |PC    |IR    |      
+0001 |      |ADD   |PC    |Const |PC    |      |4     |Jump1 |      |      |      |      |RR    
+0002 |Put   |ADD   |IR    |Const |C     |Word  |0     |      |      |      |      |      |      
+0003 |      |      |      |      |      |      |      |True  |Start |      |      |      |WF1   
+0004 |addi  |ADD   |A     |IR    |C     |Word  |      |      |      |      |      |      |      
+0005 |      |      |      |      |      |      |      |True  |Start |      |      |      |WF2   
+0006 |add   |ADD   |A     |B     |C     |      |      |      |      |      |      |      |      
+0007 |      |      |      |      |      |      |      |True  |Start |      |      |      |WF3   
+0008 |subi  |SUB   |A     |IR    |C     |Word  |      |      |      |      |      |      |      
+0009 |      |      |      |      |      |      |      |True  |Start |      |      |      |WF1   
+000A |sub   |SUB   |A     |B     |C     |Word  |      |      |      |      |      |      |      
+000B |      |      |      |      |      |      |      |True  |Start |      |      |      |WF2   
+000C |mul   |MUL   |A     |B     |C     |Word  |      |      |      |      |      |      |      
+000D |      |      |      |      |      |      |      |True  |Start |      |      |      |WF3   
+000E |store |S2    |      |B     |MDR   |      |      |      |      |      |      |      |WF3   
+000F |      |ADD   |A     |IR    |MAR   |Word  |      |      |      |      |      |      |      
+0010 |      |      |      |      |      |      |      |True  |Start |WW    |MAR   |MDR   |      
+0011 |load  |ADD   |A     |IR    |MAR   |Word  |      |      |      |      |      |      |      
+0012 |      |      |      |      |      |      |      |      |      |RW    |MAR   |MDR   |      
+0013 |      |S1    |MDR   |      |C     |      |      |      |      |      |      |      |      
+0014 |      |      |      |      |      |      |      |True  |Start |      |      |      |WF2   
+0015 |jmp   |ADD   |PC    |IR    |PC    |Word  |      |True  |Start |      |      |      |      
+0016 |brge  |S2    |      |B     |C     |      |      |GE    |jmp   |      |      |      |      
+0017 |      |      |      |      |      |      |      |True  |start |      |      |      |      
+0018 |brle  |S2    |      |B     |C     |      |      |LE    |jmp   |      |      |      |      
+0019 |      |      |      |      |      |      |      |True  |start |      |      |      |      
+001A |brlt  |S2    |      |B     |C     |      |      |LT    |jmp   |      |      |      |      
+001B |      |      |      |      |      |      |      |True  |start |      |      |      |      
+
+[Jump Tables]
+;Opcode  |Jump Table 1 |Jump Table 2 
+NOP      |start        |start        
+LDB      |             |             
+LDH      |             |             
+LDW      |load         |             
+STB      |             |             
+STH      |             |             
+STW      |store        |             
+ADD      |add          |             
+SUB      |sub          |             
+MUL      |mul          |             
+DIV      |             |             
+AND      |             |             
+OR       |             |             
+XOR      |             |             
+SLL      |             |             
+SRL      |             |             
+SRA      |             |             
+ADDI     |addi         |             
+SUBI     |subi         |             
+MULI     |             |             
+DIVI     |             |             
+ANDI     |             |             
+ORI      |             |             
+XORI     |             |             
+SLLI     |             |             
+SRLI     |             |             
+SRAI     |             |             
+LIH      |             |             
+BRZ      |             |             
+BRNZ     |             |             
+BRGT     |             |             
+BRGE     |brge         |             
+BRLT     |brlt         |             
+BRLE     |brle         |             
+PUT      |Put          |             
+JMP      |jmp          |             
+

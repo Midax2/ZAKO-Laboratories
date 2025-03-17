@@ -1,0 +1,5 @@
+[Microprogrammed Architecture Project]
+Microcode=soi.mco
+InstructionMemory=soi.cod
+DataMemory=soi.dat
+MemoryAccessTime=4
