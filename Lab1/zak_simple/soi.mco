@@ -27,19 +27,45 @@
 0018 |BRGE  |      |      |      |      |      |      |      |      |      |      |      |RR    
 0019 |      |S2    |      |B     |      |      |      |GE    |DoJump|      |      |      |      
 001A |      |      |      |      |      |      |      |True  |Start |      |      |      |      
-001B |ADDMUL|MUL   |A     |B     |TMP1  |      |      |      |      |      |      |      |      
-001C |      |ADD   |TMP1  |B     |C     |      |      |      |      |      |      |      |      
-001D |      |      |      |      |      |      |      |True  |Start |      |      |      |WF4   
-001E |DoJump|ADD   |PC    |IR    |PC    |Word  |      |True  |Start |      |      |      |RR    
-001F |INCCMP|ADD   |A     |Const |TMP1  |Word  |4     |      |      |      |      |      |      
-0020 |      |S1    |TMP1  |      |C     |      |      |      |      |      |      |      |      
-0021 |      |      |      |      |      |      |      |      |      |      |      |      |WF1   
-0022 |      |SUB   |TMP1  |Const |C     |Word  |60    |      |      |      |      |      |      
-0023 |      |      |      |      |      |      |      |True  |Start |      |      |      |WF2   
-0024 |R3R4R5R2|S2    |      |B     |C     |Word  |      |      |      |      |      |      |      
-0025 |      |S2    |      |Const |C     |Word  |0     |      |      |      |      |      |WF1   
-0026 |      |S2    |      |Const |C     |Word  |0     |      |      |      |      |      |WF2   
-0027 |      |      |      |      |      |      |      |True  |Start |      |      |      |WF4   
+001B |ADDMUL|      |      |      |      |      |      |      |      |      |      |      |RR    
+001C |      |MUL   |A     |B     |TMP1  |      |      |      |      |      |      |      |      
+001D |      |ADD   |TMP1  |B     |C     |      |      |      |      |      |      |      |      
+001E |      |      |      |      |      |      |      |True  |Start |      |      |      |WF4   
+001F |DoJump|ADD   |PC    |IR    |PC    |Word  |      |True  |Start |      |      |      |RR    
+0020 |INCCMP|      |      |      |      |      |      |      |      |      |      |      |RAF1  
+0021 |      |ADD   |A     |Const |TMP1  |Word  |4     |      |      |      |      |      |      
+0022 |      |S1    |TMP1  |      |C     |      |      |      |      |      |      |      |      
+0023 |      |      |      |      |      |      |      |      |      |      |      |      |WF1   
+0024 |      |SUB   |TMP1  |IR    |C     |Word  |      |      |      |      |      |      |      
+0025 |      |      |      |      |      |      |      |True  |Start |      |      |      |WF2   
+0026 |R3R4R5R2|S2    |      |B     |C     |Word  |      |      |      |      |      |      |      
+0027 |      |S2    |      |Const |C     |Word  |0     |      |      |      |      |      |WF1   
+0028 |      |S2    |      |Const |C     |Word  |0     |      |      |      |      |      |WF2   
+0029 |      |      |      |      |      |      |      |True  |Start |      |      |      |WF4   
+002A |LDST  |ADD   |A     |Const |MAR   |Word  |512   |      |      |      |      |      |      
+002B |      |ADD   |Const |B     |MAR   |Word  |640   |      |      |RW    |MAR   |MDR   |      
+002C |      |S1    |MDR   |      |C     |      |      |      |      |WW    |MAR   |MDR   |      
+002D |      |      |      |      |      |      |      |True  |Start |      |      |      |WF3   
+002E |LDLD  |ADD   |A     |Const |MAR   |Word  |640   |      |      |      |      |      |      
+002F |      |ADD   |Const |B     |MAR   |Word  |704   |      |      |RW    |MAR   |MDR   |      
+0030 |      |S1    |MDR   |      |C     |      |      |      |      |RW    |MAR   |MDR   |      
+0031 |      |S1    |MDR   |      |C     |      |      |      |      |      |      |      |WF3   
+0032 |      |      |      |      |      |      |      |True  |Start |      |      |      |WF4   
+0033 |ADDMULINC|MUL   |A     |B     |TMP1  |Word  |      |      |      |      |      |      |RBF3  
+0034 |      |ADD   |TMP1  |B     |C     |      |      |      |      |      |      |      |RAF4  
+0035 |      |ADD   |A     |Const |TMP1  |Word  |4     |      |      |      |      |      |WF3   
+0036 |      |SUB   |TMP1  |Const |C     |Word  |60    |LE    |5MOD  |      |      |      |      
+0037 |      |S1    |Const |      |TMP1  |Word  |0     |      |      |      |      |      |      
+0038 |5MOD  |S1    |TMP1  |      |C     |Word  |      |      |      |      |      |      |      
+0039 |      |      |      |      |      |      |      |True  |Start |      |      |      |WF4   
+003A |R4R1ZERO|S1    |Const |      |C     |Word  |0     |      |      |      |      |      |      
+003B |      |      |      |      |      |      |      |      |      |      |      |      |WF1   
+003C |      |      |      |      |      |      |      |True  |Start |      |      |      |WF2   
+003D |R4SUPER|      |      |      |      |      |      |      |      |      |      |      |RAF1  
+003E |      |SUB   |A     |Const |TMP1  |Word  |4     |GE    |4RESET|      |      |      |      
+003F |      |S1    |Const |      |TMP1  |Word  |60    |      |      |      |      |      |      
+0040 |4RESET|S1    |TMP1  |      |C     |Word  |      |      |      |      |      |      |      
+0041 |      |      |      |      |      |      |      |True  |Start |      |      |      |WF1   
 
 [Jump Tables]
 ;Opcode  |Jump Table 1 |Jump Table 2 
@@ -80,4 +106,9 @@ BRLE     |BRLE         |
 ADDMUL   |ADDMUL       |             
 INCCMP   |INCCMP       |             
 R3R4R5R2 |R3R4R5R2     |             
+LDST     |LDST         |             
+LDLD     |LDLD         |             
+ADDMULINC|ADDMULINC    |             
+R4R1ZERO |R4R1ZERO     |             
+R4SUPER  |R4SUPER      |             
 
