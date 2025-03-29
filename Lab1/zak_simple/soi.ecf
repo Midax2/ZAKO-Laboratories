@@ -8,7 +8,7 @@ CodeMemorySize=512
 
 [Instruction Encoding]
 NumberOfOpcodes=64
-NumberOfRegisters=32
+NumberOfRegisters=16
 
 [Instructions]
 ;Opcode  |Type|Mnemonic Representation
@@ -46,8 +46,9 @@ BRGT     | I  |r2, j
 BRGE     | I  |r2, j
 BRLT     | I  |r2, j
 BRLE     | I  |r2, j
-PUT      | I  |r1, i
-JMP      | I  |r2, i
+ADDMUL   | R  |r1, r2, r3, r4
+INCCMP   | R  |r1, r2
+R3R4R5R2 | R  |r1, r2, r3, r4
 
 [Microprogrammed Architecture]
 MicroCodeSize=256
@@ -55,8 +56,8 @@ ConstantSize=12
 NumberOfJumpTables=2
 RRFormalA=1
 RRFormalB=2
-RAF=[1,2,3,4]
-RBF=[1,2,3,4]
+RAF=[1,2,3]
+RBF=[1,2,3]
 WF=[1,2,3,4]
 RAA=no
 RBA=no
