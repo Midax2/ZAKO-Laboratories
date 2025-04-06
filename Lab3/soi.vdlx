@@ -1,0 +1,102 @@
+
+/*
+ word - 4B, hword - 2B, byte - 1B
+*/
+.data
+	:input .word
+		1, 2, 3, 4, 
+		5, 6, 7, 8, 
+		9, 10, 11, 12, 
+		13, 14, 15, 16,
+		17, 18, 19, 20,
+		21, 22, 23, 24, 
+		25, 26, 27, 28,
+		29, 30, 31, 32 
+	:delay .word
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0
+	:coeff .word
+		1, 1, 1, 1,
+		1, 1, 1, 1, 
+		1, 1, 1, 1,
+		1, 1, 1, 1
+	:output .word
+		0, 0, 0, 0, 
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0, 
+		0, 0, 0, 0
+
+/* start programu */
+	.text
+:start
+/* L O O P Y */
+
+		add r1, r0, r0
+		add r4, r0, r0
+		nop nop nop;;
+
+	:loop1
+      xor r7,r7,r7
+      nop nop nop nop;;
+        
+		xor r2, r20, r20
+		lw r7, input(r1)
+		nop nop nop;;
+
+		xor r3, r22, r22
+		add r5, r4, r0
+		nop nop nop;;
+		
+		nop nop nop nop nop;;
+
+		nop nop
+		sw delay(r4), r7
+		nop nop;;
+
+	:loop2
+
+		subi r14, r5, 60
+		lw r9, delay(r5)
+		lw r10, coeff(r2)
+		nop nop;;
+
+		addi r5, r5, 4
+		subi r16, r2, 60
+		nop nop 
+		mult r15, r9, r10;;
+		
+		add r3, r3, r15 
+		addi r2, r2, 4
+		nop nop nop;;
+
+		bnez r14, skip2
+		addi r5, r0, 0
+		nop nop nop;;
+		
+		:skip2
+
+		bnez r16, loop2
+		nop nop nop nop;;
+
+		subi r4, r4, 4
+		addi r13, r4, 4	
+		sw output(r1), r3
+		nop nop;;
+
+		subi r12, r1, 124
+		addi r1, r1, 4
+		nop nop nop;;
+
+		bnez r13, skip1
+		addi r4, r0, 60
+		nop nop nop;;
+
+	:skip1
+		bnez r12, loop1
+		nop nop nop nop;;
