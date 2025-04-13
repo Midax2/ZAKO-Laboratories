@@ -21,12 +21,12 @@
 004C: 48AB0038 |            | SUBI R5, 0x0038, R11
 0050: 44420004 |            | ADDI R2, 0x0004, R2
 0054: 252A4000 |            | MUL  R9, R10, R8
-0058: 840B0010 |            | BRLE R11, nereset2
+0058: 840B000C |            | BRLE R11, nereset2
 005C: 44A50004 |            | ADDI R5, 0x0004, R5
 0060: 1C681800 |            | ADD  R3, R8, R3
 0064: 1C002800 |            | ADD  R0, R0, R5
 0068: 0C4A02C0 | nereset2   | LDW  R10, 0x02C0(R2)
-006C: 0CA90280 | nereset2   | LDW  R9, 0x0280(R5)
+006C: 0CA90280 |            | LDW  R9, 0x0280(R5)
 0070: 48AB0038 |            | SUBI R5, 0x0038, R11
 0074: 44420004 |            | ADDI R2, 0x0004, R2
 0078: 252A4000 |            | MUL  R9, R10, R8
